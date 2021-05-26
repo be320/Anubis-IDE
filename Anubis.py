@@ -6,7 +6,6 @@
 import sys
 import glob
 import serial
-
 import Python_Coloring
 from PyQt5 import QtCore
 from PyQt5 import QtGui
@@ -313,17 +312,21 @@ class UI(QMainWindow):
 
     ###########################        Start OF the Functions          ##################
     def Run(self):
-        if self.port_flag == 0:
-            mytext = text.toPlainText()
-        #
-        ##### Compiler Part
-        #
-#            ide.create_file(mytext)
-#            ide.upload_file(self.portNo)
-            text2.append("Sorry, there is no attached compiler.")
+        mytext = text.toPlainText()
+        #Get Function Parameters
+        params = text2.toPlainText()
+        paramsArr = params.split(' ')
+        paramsFn = ','.join(paramsArr)
 
-        else:
-            text2.append("Please Select Your Port Number First")
+        #Get Function Name
+        startInd = mytext.find("def")
+        endInd = mytext.find("(")
+        nameFn = mytext[startInd+3 : endInd]
+        nameFn = nameFn.replace(" ","")
+
+        
+
+
 
 
     # this function is made to get which port was selected by the user
