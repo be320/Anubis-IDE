@@ -315,8 +315,8 @@ class UI(QMainWindow):
         mytext = text.toPlainText()
         #Get Function Parameters
         params = text2.toPlainText()
-        paramsArr = params.split(' ')
-        paramsFn = ','.join(paramsArr)
+        params = params.split(' ')
+        params = ','.join(params)
 
         #Get Function Name
         startInd = mytext.find("def")
@@ -324,7 +324,16 @@ class UI(QMainWindow):
         nameFn = mytext[startInd+3 : endInd]
         nameFn = nameFn.replace(" ","")
 
-        
+
+        #Get Names of variables returned, in case of single return
+        returnInd = mytext.find("return")
+        returnNum = mytext.count("return")
+        if  returnNum == 1:
+            returnVars = mytext[returnInd+6 :]
+            returnVars = returnVars.replace(" ", "")
+            returnVars = returnVars.replace("\n", "") 
+            returnVars = returnVars.split(',') 
+
 
 
 
