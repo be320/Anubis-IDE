@@ -12,6 +12,7 @@ from PyQt5 import QtGui
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from pathlib import Path
+import io
 
 def serial_ports():
     """ Lists serial port names
@@ -333,6 +334,12 @@ class UI(QMainWindow):
             returnVars = returnVars.replace(" ", "")
             returnVars = returnVars.replace("\n", "") 
             returnVars = returnVars.split(',') 
+
+        # imported io for the next feature
+        # Printing output will be automatically switched to a file
+        output = io.StringIO() 
+        sys.stdout = output
+        exec(mytext)
 
 
 
