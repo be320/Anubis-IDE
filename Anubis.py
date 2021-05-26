@@ -341,6 +341,27 @@ class UI(QMainWindow):
         sys.stdout = output
         exec(mytext)
 
+        # if Nothing is returned from the function
+        if returnInd == -1:
+            exec(nameFn + '(' + params + ')')
+
+        # If the function has only one return statement
+        elif returnNum == 1: 
+            exec('output = ' + nameFn + '(' + params + ')') 
+            # if only one variable is returned
+            if len(returnVars) == 1:
+                 exec("print(output)")
+            else: 
+                i = 0 
+                exec("ind = 0")
+                while i < len(returnVars):
+                     print(returnVars[i] + " = ", end=' ')
+                     exec("print(output[ind])")
+                     i += 1
+                     exec("ind += 1")
+        
+
+
 
 
 
