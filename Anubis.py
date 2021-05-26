@@ -365,7 +365,7 @@ class UI(QMainWindow):
         #If the function has multiple return statements
         else: 
             exec('output = ' + nameFn + '(' + params + ')')
-            exec("print(out)")
+            exec("print(output)")
 
         exec("text2.clear()") 
         exec("text2.append('program executed successfully:')")
