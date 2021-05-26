@@ -341,12 +341,12 @@ class UI(QMainWindow):
         sys.stdout = output
         exec(mytext)
 
-        # if Nothing is returned from the function
+        # if the function is void
         if returnInd == -1:
             exec(nameFn + '(' + params + ')')
 
-        # If the function has only one return statement
-        elif returnNum == 1: 
+        # If the function has return statement
+        elif returnNum >= 1: 
             exec('output = ' + nameFn + '(' + params + ')') 
             # if only one variable is returned
             if len(returnVars) == 1:
@@ -361,9 +361,12 @@ class UI(QMainWindow):
                      exec("ind += 1")
         
 
-
-
-
+        exec("text2.clear()") 
+        exec("text2.append('program executed successfully:')")
+        s = output.getvalue() 
+        text2.append(s + "") 
+        sys.stdout = sys.__stdout__ 
+        output.close()
 
 
     # this function is made to get which port was selected by the user
