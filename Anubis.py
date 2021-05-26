@@ -338,8 +338,8 @@ class UI(QMainWindow):
 
         # imported io for the next feature
         # Printing output will be automatically switched to a file
-        output = io.StringIO() 
-        sys.stdout = output
+        out = io.StringIO() 
+        sys.stdout = out
         exec(mytext)
 
         # if the function is void
@@ -347,7 +347,7 @@ class UI(QMainWindow):
             exec(nameFn + '(' + params + ')')
 
         # If the function has return statement
-        elif returnNum >= 1: 
+        elif returnNum == 1: 
             exec('output = ' + nameFn + '(' + params + ')') 
             # if only one variable is returned
             if len(returnVars) == 1:
@@ -362,12 +362,17 @@ class UI(QMainWindow):
                      exec("ind += 1")
         
 
+        #If the function has multiple return statements
+        else: 
+            exec('output = ' + nameFn + '(' + params + ')')
+            exec("print(out)")
+
         exec("text2.clear()") 
         exec("text2.append('program executed successfully:')")
-        s = output.getvalue() 
+        s = out.getvalue() 
         text2.append(s + "") 
         sys.stdout = sys.__stdout__ 
-        output.close()
+        out.close()
 
 
     # this function is made to get which port was selected by the user
